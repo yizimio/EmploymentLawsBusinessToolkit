@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<!-- saved from url=(0170)https://www.figma.com/proto/tDHakWrUYatXyxzuHNDpSg/MOL-Business-Toolkit?embed_host=share&kind=&node-id=1%3A353&scaling=scale-down&viewport=788%2C3042%2C0.1526501625776291 -->
+<html><div id="twoseven-scripts" data-info="Scripts added by TwoSeven extension" style="display: none !important; position: static !important; top: 0px !important; left: 0px !important; width: 0px !important; height: 0px !important;"><script type="text/javascript" id="__tmpScript-423583489" data-added-by-two-seven="1">(function() {
+        window.twoseven = {};
+      })();</script><script type="text/javascript" id="__tmpScript-393011692" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const a=new MutationObserver(async o=>{for(const r of o)if("childList"===r.type){const o=Array.from(r.addedNodes),w=await i({type:n,value:s},o,t);if(w)return a.disconnect(),e(w)}});a.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-906558737" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-129776916" data-added-by-two-seven="1">(function() {
+        
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-798798205" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-946083083" data-added-by-two-seven="1">(function() {
+        
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-512594668" data-added-by-two-seven="1">(function() {
+        
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-31067545" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-443915719" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-838684633" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-844871341" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-52791477" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-474548777" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-518439285" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-666267793" data-added-by-two-seven="1">(function() {
+        
+    window.attachHistoryListeners = function d(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-400254164" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-602561633" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-338291247" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-718567511" data-added-by-two-seven="1">(function() {
+        window.twoseven = {};
+      })();</script><script type="text/javascript" id="__tmpScript-874998288" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const a=new MutationObserver(async o=>{for(const r of o)if("childList"===r.type){const o=Array.from(r.addedNodes),w=await i({type:n,value:s},o,t);if(w)return a.disconnect(),e(w)}});a.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-554008233" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-951033309" data-added-by-two-seven="1">(function() {
+        
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-841540773" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-402055771" data-added-by-two-seven="1">(function() {
+        
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-930169984" data-added-by-two-seven="1">(function() {
+        
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-828463120" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-462335622" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-824298076" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-885288152" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-595041711" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-725496144" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-117704421" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-409472323" data-added-by-two-seven="1">(function() {
+        
+    window.attachHistoryListeners = function d(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-285915046" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-922355628" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-799703527" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-768785583" data-added-by-two-seven="1">(function() {
+        
+    const roomInfo = {
+      roomOwner: undefined,
+      roomType: undefined,
+      roomController: undefined,
+      roomProperties: undefined
+    }
+    window.twoseven.roomInfo = roomInfo
+
+    window.addEventListener('message', ({ data = {} }) => {
+      const { action } = data
+      if (action !== 'room-updated') {
+        return
+      }
+      const { data: { key, value } } = data
+      roomInfo[key] = value
+    })
+  ;
+      })();</script></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+        <meta name="twitter:card" content="player">
+    <meta name="twitter:site" content="@figmadesign">
+    <meta name="twitter:title" content="MOL Business Toolkit">
+    <meta name="twitter:player" content="https://www.figma.com/embed?embed_host=twitter&amp;url=https://www.figma.com/proto/tDHakWrUYatXyxzuHNDpSg?embed_host=share&amp;kind=&amp;node-id=1%3A353&amp;scaling=scale-down&amp;viewport=788%2C3042%2C0.1526501625776291">
+    <meta name="twitter:player:width" content="800">
+    <meta name="twitter:player:height" content="450">
+    <meta name="twitter:image" content="https://www.figma.com/file/tDHakWrUYatXyxzuHNDpSg/thumbnail?ver=thumbnails/44c71e2e-de71-4ee8-87af-8dc07acedad4">
+
+    <meta property="og:url" content="https://www.figma.com/proto/tDHakWrUYatXyxzuHNDpSg?embed_host=share&amp;kind=&amp;node-id=1%3A353&amp;scaling=scale-down&amp;viewport=788%2C3042%2C0.1526501625776291">
+    <meta property="og:description" content="Created with Figma">
+    <meta property="og:image" content="https://www.figma.com/file/tDHakWrUYatXyxzuHNDpSg/thumbnail?ver=thumbnails/44c71e2e-de71-4ee8-87af-8dc07acedad4">
+    <meta property="og:image:width" content="154">
+    <meta property="og:image:height" content="799">
+    <meta property="og:image:user_generated" content="true">
+    <meta property="og:type" content="article">
+    <meta property="og:article:published_time" content="2020-12-23 15:01:02 UTC">
+    <meta property="og:article:modified_time" content="2021-12-25 22:47:58 UTC">
+    <meta property="og:article:section" content="Design">
+
+    <meta name="description" content="Created with Figma">
+
+    <link rel="alternate" type="application/json+oembed" href="https://www.figma.com/api/oembed?url=https://www.figma.com/proto/tDHakWrUYatXyxzuHNDpSg?embed_host=share&amp;kind=&amp;node-id=1%3A353&amp;scaling=scale-down&amp;viewport=788%2C3042%2C0.1526501625776291" title="OEmbed">
+
+    <script nonce="">
+      if (function() {
+        try { eval('(async () => { for await (let v of [{ async* [Symbol.asyncIterator]() { yield {x: 1} } }]) { let {a, ...b} = {...v} } })().finally(() => {}); /\\p{Z}/u;') } catch (e) { return true }
+
+        return false
+      }()) {
+        location.href = '/unsupported_browser'
+      }
+    </script>
+
+
+
+    <script nonce="" data-initial="{&quot;INITIAL_OPTIONS&quot;:{&quot;feature_flags&quot;:{&quot;activerecord_cache&quot;:true,&quot;activerecord_cache_livelaunch&quot;:true,&quot;agent_new_installs&quot;:true,&quot;antispam_rl_invite_from_new_user&quot;:true,&quot;antispam_rl_org&quot;:true,&quot;apex_hsts&quot;:true,&quot;audit_joins&quot;:true,&quot;audit_transactions&quot;:true,&quot;banner_redesign&quot;:true,&quot;batch_component_actions&quot;:true,&quot;block_auth_for_disposable_emails&quot;:true,&quot;browse_ia_settings_modal&quot;:true,&quot;check_higher_buffer_version&quot;:true,&quot;check_replica_lag&quot;:true,&quot;clear_received_join_end&quot;:true,&quot;comment_mentions_permissions&quot;:true,&quot;comments_on_the_canvas&quot;:true,&quot;comments_onboarding&quot;:true,&quot;community_curated_page_landing&quot;:true,&quot;community_hub_ga&quot;:true,&quot;community_hub_image_inspection&quot;:true,&quot;community_ia_refresh&quot;:true,&quot;community_merged_install_logic&quot;:true,&quot;community_org_team_ia&quot;:true,&quot;community_pop_score_replica&quot;:true,&quot;community_show_related_content&quot;:true,&quot;community_signup_redirect&quot;:true,&quot;component_actions_rate_limit&quot;:true,&quot;copy_paste_new_api&quot;:true,&quot;copy_paste_v4&quot;:true,&quot;csp_prod&quot;:true,&quot;csp_prod_admin&quot;:true,&quot;csp_prod_admin_enforce&quot;:true,&quot;csp_prod_enforce&quot;:true,&quot;cursor_chat&quot;:true,&quot;db_request_reconnect&quot;:true,&quot;default_paid_status&quot;:true,&quot;defer_invisible_children&quot;:true,&quot;defer_update_default_style&quot;:true,&quot;editor_expose_save_local_copy&quot;:true,&quot;edu_onboarding_grace_period&quot;:true,&quot;edu_onboarding_verification_form&quot;:true,&quot;edu_verification_form_updated&quot;:true,&quot;ee_custom_vertical_list_spacing&quot;:true,&quot;ee_knockout_shadow&quot;:true,&quot;ee_svg_shape_rendering&quot;:true,&quot;enable_launch_exp_winner&quot;:true,&quot;exp_comments_refresh_orgs&quot;:true,&quot;exp_comments_refresh_teams&quot;:true,&quot;exp_community_awareness_tt&quot;:true,&quot;exp_edu_onboarding_acc_creation&quot;:true,&quot;exp_guest_management_admin&quot;:true,&quot;exp_pro_edit_action&quot;:true,&quot;exp_seen_state&quot;:true,&quot;exp_skip_onboarding_steps_v1&quot;:true,&quot;explicitly_schedule_frames&quot;:true,&quot;fastma&quot;:true,&quot;fastma_ssr_boost&quot;:true,&quot;figjam_allow_mixed_text_boxes&quot;:true,&quot;figjam_allow_paste_into_design&quot;:true,&quot;figjam_bug_button_support&quot;:true,&quot;figjam_consolidate_connectors&quot;:true,&quot;figjam_copy_paste_offset&quot;:true,&quot;figjam_dlt_v2_eng_shapes&quot;:true,&quot;figjam_dlt_v2_eraser&quot;:true,&quot;figjam_dlt_v2_highlighter&quot;:true,&quot;figjam_dlt_v2_overflow&quot;:true,&quot;figjam_dlt_v2_pencil_submenu&quot;:true,&quot;figjam_dlt_v2_submenus&quot;:true,&quot;figjam_dlt_v2_submenus_delight&quot;:true,&quot;figjam_embeds&quot;:true,&quot;figjam_embeds_deactivate&quot;:true,&quot;figjam_embeds_dlt&quot;:true,&quot;figjam_embeds_new_mouse_behavior&quot;:true,&quot;figjam_import_parse_html&quot;:true,&quot;figjam_ngima_stickers&quot;:true,&quot;figjam_paid_onboarding&quot;:true,&quot;figjam_plugins_community_browse&quot;:true,&quot;figjam_plugins_templates&quot;:true,&quot;figjam_plugins_validation&quot;:true,&quot;figjam_rich_media&quot;:true,&quot;figjam_starter_support&quot;:true,&quot;figjam_zoom_controls&quot;:true,&quot;figma_design_cursor_chat&quot;:true,&quot;file_v9_index_write&quot;:true,&quot;fix_held_modifier_keys&quot;:true,&quot;fix_windows_pinch_zoom&quot;:true,&quot;font_index_211019&quot;:true,&quot;font_skip_inter&quot;:true,&quot;font_skip_sf_pro&quot;:true,&quot;free_tier_refresh_launch&quot;:true,&quot;frontend_sentry_errors&quot;:true,&quot;fullscreen_200_editors&quot;:true,&quot;fullscreen_alt_drag_delay&quot;:true,&quot;fullscreen_del_inst_sublayers&quot;:true,&quot;fullscreen_export_bounds_fix&quot;:true,&quot;fullscreen_minimal_user_state&quot;:true,&quot;fullscreen_pen_tool_memory&quot;:true,&quot;fullscreen_rust_migrations&quot;:true,&quot;gc_component_actions&quot;:true,&quot;generate_checkpoint_thumbnails&quot;:true,&quot;get_file_pixie_worker&quot;:true,&quot;gtm_geolocation&quot;:true,&quot;hand_cursor_press_state&quot;:true,&quot;hand_tool_highlight&quot;:true,&quot;improved_team_member_loading&quot;:true,&quot;library_v1_indexing&quot;:true,&quot;library_v1_relevant_cols&quot;:true,&quot;library_v1_searching&quot;:true,&quot;library_v1_update_by_query&quot;:true,&quot;livegraph_idle_disconnect&quot;:true,&quot;longpress_accent_menu_macos&quot;:true,&quot;menu_search_metrics_tracker&quot;:true,&quot;modal_dropdown_menus&quot;:true,&quot;multiplayer_checkpoints_180&quot;:true,&quot;multiplayer_checkpoints_75&quot;:true,&quot;multiplayer_figjam_max_conn_500&quot;:true,&quot;multiplayer_incremental_removes&quot;:true,&quot;multiplayer_migrate_pending&quot;:true,&quot;multiplayer_no_incremental_edits&quot;:true,&quot;multiplayer_para_indent_val&quot;:true,&quot;multiplayer_reconnect_seq_num&quot;:true,&quot;multiplayer_scene_validation&quot;:true,&quot;multiplayer_widgets_subtree&quot;:true,&quot;multiplayer_zstd_compression&quot;:true,&quot;multiple_fills_on_regions&quot;:true,&quot;noodles_in_view_only&quot;:true,&quot;notif_cursor_backfill_sleep&quot;:true,&quot;ojc_license_admins&quot;:true,&quot;org_file_count_optimization&quot;:true,&quot;org_join_controls&quot;:true,&quot;paste_in_group_like_frame&quot;:true,&quot;paste_to_replace&quot;:true,&quot;penalize_inactive_contact_search&quot;:true,&quot;penalize_non_recent_contacts_++&quot;:true,&quot;pixie_png_anti_aliasing&quot;:true,&quot;pixie_use_file_proxy_fallback&quot;:true,&quot;plugins_fast_find_all&quot;:true,&quot;plugins_publishing_bf_write&quot;:true,&quot;pre_figjam_launch_promo&quot;:true,&quot;prevent_instance_style_dirty&quot;:true,&quot;pro_block_unexpected_editors&quot;:true,&quot;pro_design_edit_links_launch&quot;:true,&quot;pro_team_dashboard&quot;:true,&quot;proto_october_updates_rcs&quot;:true,&quot;prototype_disable_key_nav&quot;:true,&quot;prototype_fewer_starting_points&quot;:true,&quot;prototype_inc_frame_loading_mob&quot;:true,&quot;prototype_inc_frame_loading_mweb&quot;:true,&quot;prototype_lib_fetch_shared_fonts&quot;:true,&quot;prototype_multiple_entry_points&quot;:true,&quot;prototype_tab_toggle&quot;:true,&quot;random_page_rampup&quot;:true,&quot;recaptcha_frontend_web&quot;:true,&quot;recaptcha_serverside_enforce&quot;:true,&quot;remote_work_templates&quot;:true,&quot;replica_api_session_state&quot;:true,&quot;replica_api_user_state&quot;:true,&quot;report_lower_buffer_version&quot;:true,&quot;require_okta_groups_reject&quot;:true,&quot;reset_idle_frame_timings&quot;:true,&quot;search_analytics_use_replica&quot;:true,&quot;selection_paints_deleted_style&quot;:true,&quot;show_menu_item_al_symbol_repub&quot;:true,&quot;skip_redirect_interstitial&quot;:true,&quot;sso_autodirect&quot;:true,&quot;starter_file_edit_link&quot;:true,&quot;streamline_figjam_onboarding&quot;:true,&quot;stripe_tax&quot;:true,&quot;survey_org_cart_abandon&quot;:true,&quot;survey_pro_cart_abandon&quot;:true,&quot;text_wrapping_improvements&quot;:true,&quot;use_absolute_bounds_export&quot;:true,&quot;user_pref_sync&quot;:true,&quot;ux_feedback_survey&quot;:true,&quot;viewer_desktop_defer_prerender&quot;:true,&quot;viewer_enable_auto_layout&quot;:true,&quot;viewer_multiple_mousemove_events&quot;:true,&quot;viewer_observation_v2&quot;:true,&quot;viewer_reduce_redundant_gl_calls&quot;:true,&quot;viewer_server_downsample&quot;:true,&quot;viewer_ssaa_only_lower_dpr&quot;:true,&quot;viewer_unload_image_ram&quot;:true,&quot;virtual_node_fields&quot;:true,&quot;voice_audio_in_cursor&quot;:true,&quot;voice_captions_enabled&quot;:true,&quot;voice_enabled&quot;:true,&quot;voice_rollout&quot;:true,&quot;voice_unmute_on_join&quot;:true,&quot;widgets_default_pass_through&quot;:true,&quot;widgets_lock_down_api_throw&quot;:true,&quot;widgets_property_menu&quot;:true,&quot;workshop_mode&quot;:true},&quot;experiments&quot;:{&quot;exp_community_awareness_tt&quot;:{&quot;experiment_name&quot;:&quot;exp_community_awareness_tt&quot;,&quot;assignment_weights&quot;:null,&quot;randomization_method&quot;:0,&quot;winner&quot;:null,&quot;treatment_names&quot;:[&quot;control&quot;,&quot;A&quot;,&quot;B&quot;]},&quot;exp_comments_refresh_orgs&quot;:{&quot;experiment_name&quot;:&quot;exp_comments_refresh_orgs&quot;,&quot;assignment_weights&quot;:{&quot;enabled&quot;:100,&quot;disabled&quot;:0},&quot;randomization_method&quot;:0,&quot;winner&quot;:null,&quot;treatment_names&quot;:[&quot;disabled&quot;,&quot;enabled&quot;]},&quot;exp_comments_refresh_teams&quot;:{&quot;experiment_name&quot;:&quot;exp_comments_refresh_teams&quot;,&quot;assignment_weights&quot;:{&quot;enabled&quot;:100,&quot;disabled&quot;:0},&quot;randomization_method&quot;:0,&quot;winner&quot;:null,&quot;treatment_names&quot;:[&quot;disabled&quot;,&quot;enabled&quot;]},&quot;exp_edu_onboarding_acc_creation&quot;:{&quot;experiment_name&quot;:&quot;exp_edu_onboarding_acc_creation&quot;,&quot;assignment_weights&quot;:null,&quot;randomization_method&quot;:0,&quot;winner&quot;:null,&quot;treatment_names&quot;:[&quot;control&quot;,&quot;variant&quot;]},&quot;exp_seen_state&quot;:{&quot;experiment_name&quot;:&quot;exp_seen_state&quot;,&quot;assignment_weights&quot;:null,&quot;randomization_method&quot;:0,&quot;winner&quot;:&quot;variant&quot;,&quot;treatment_names&quot;:[&quot;control&quot;,&quot;variant&quot;]},&quot;exp_skip_onboarding_steps_v1&quot;:{&quot;experiment_name&quot;:&quot;exp_skip_onboarding_steps_v1&quot;,&quot;assignment_weights&quot;:null,&quot;randomization_method&quot;:0,&quot;winner&quot;:&quot;variant&quot;,&quot;treatment_names&quot;:[&quot;control&quot;,&quot;variant&quot;]},&quot;exp_pro_edit_action&quot;:{&quot;experiment_name&quot;:&quot;exp_pro_edit_action&quot;,&quot;assignment_weights&quot;:null,&quot;randomization_method&quot;:0,&quot;winner&quot;:&quot;variant_edit_button&quot;,&quot;treatment_names&quot;:[&quot;control&quot;,&quot;variant_edit_button&quot;,&quot;variant_edit_heuristic&quot;]},&quot;voice_rollout&quot;:{&quot;experiment_name&quot;:&quot;voice_rollout&quot;,&quot;assignment_weights&quot;:null,&quot;randomization_method&quot;:0,&quot;winner&quot;:null,&quot;treatment_names&quot;:[&quot;control&quot;,&quot;variant&quot;]}},&quot;tracking_session_id&quot;:&quot;RDZmwK7nZgCGgrny&quot;,&quot;cluster_name&quot;:&quot;prod&quot;,&quot;error_dashboard_url&quot;:&quot;https://errors.figma.com/api&quot;,&quot;frontend_sentry_dsn&quot;:&quot;https://d1b12a8fbe424e4b956eb33cadd5b30d@errors.figma.com/api/sentry/56203&quot;,&quot;figma_email_suffix&quot;:&quot;@figma.com&quot;,&quot;csp_nonce&quot;:&quot;bPbXUyekXyO3TY3vt3vkSQ==&quot;,&quot;figma_url&quot;:&quot;https://www.figma.com&quot;,&quot;flash&quot;:{&quot;error&quot;:null,&quot;warn&quot;:null,&quot;success&quot;:null},&quot;user_flags&quot;:[{&quot;id&quot;:&quot;235767254&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;account_switcher_onboarded&quot;,&quot;created_at&quot;:&quot;2021-04-02T00:28:02.440Z&quot;,&quot;updated_at&quot;:&quot;2021-04-02T00:28:02.440Z&quot;},{&quot;id&quot;:&quot;94131031&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;autolayout_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.093Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.093Z&quot;},{&quot;id&quot;:&quot;198387745&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;autolayout_v3_onboarded&quot;,&quot;created_at&quot;:&quot;2021-01-16T17:57:58.611Z&quot;,&quot;updated_at&quot;:&quot;2021-01-16T17:57:58.611Z&quot;},{&quot;id&quot;:&quot;170825036&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;autosave_onboarded&quot;,&quot;created_at&quot;:&quot;2020-10-27T02:34:21.349Z&quot;,&quot;updated_at&quot;:&quot;2020-10-27T02:34:21.349Z&quot;},{&quot;id&quot;:&quot;319984507&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;aware_of_observation_mode&quot;,&quot;created_at&quot;:&quot;2021-08-18T23:51:01.524Z&quot;,&quot;updated_at&quot;:&quot;2021-11-05T01:48:54.154Z&quot;},{&quot;id&quot;:&quot;94131007&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;back_to_file_browser_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.011Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.011Z&quot;},{&quot;id&quot;:&quot;94131021&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;coco_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.062Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.062Z&quot;},{&quot;id&quot;:&quot;94131019&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;community_hub_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.056Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.056Z&quot;},{&quot;id&quot;:&quot;101065109&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;completed_font_installer_modal&quot;,&quot;created_at&quot;:&quot;2020-01-31T03:04:02.694Z&quot;,&quot;updated_at&quot;:&quot;2020-01-31T03:04:02.694Z&quot;},{&quot;id&quot;:&quot;191925322&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;create_project_onboarded&quot;,&quot;created_at&quot;:&quot;2020-12-27T01:03:03.947Z&quot;,&quot;updated_at&quot;:&quot;2020-12-27T01:03:03.947Z&quot;},{&quot;id&quot;:&quot;95547720&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;create_team_onboarded&quot;,&quot;created_at&quot;:&quot;2020-01-05T20:10:57.862Z&quot;,&quot;updated_at&quot;:&quot;2020-01-05T20:10:57.862Z&quot;},{&quot;id&quot;:&quot;384472678&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;desktop_fullscreen_tabs_hidden_onboarded&quot;,&quot;created_at&quot;:&quot;2021-11-05T03:01:29.106Z&quot;,&quot;updated_at&quot;:&quot;2021-11-05T03:01:39.704Z&quot;},{&quot;id&quot;:&quot;254531508&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;dismissed_autolayout_child_alignment_migration_info&quot;,&quot;created_at&quot;:&quot;2021-04-28T17:50:30.429Z&quot;,&quot;updated_at&quot;:&quot;2021-04-28T17:50:30.429Z&quot;},{&quot;id&quot;:&quot;417361166&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;edit_action_experiment_shown_once&quot;,&quot;created_at&quot;:&quot;2021-12-14T20:49:20.584Z&quot;,&quot;updated_at&quot;:&quot;2021-12-14T20:49:20.584Z&quot;},{&quot;id&quot;:&quot;417384195&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;edit_action_experiment_shown_twice&quot;,&quot;created_at&quot;:&quot;2021-12-14T21:36:25.602Z&quot;,&quot;updated_at&quot;:&quot;2021-12-14T21:36:25.602Z&quot;},{&quot;id&quot;:&quot;94131009&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;editor_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.019Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.019Z&quot;},{&quot;id&quot;:&quot;365495235&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;figjam_editor_onboarded&quot;,&quot;created_at&quot;:&quot;2021-10-15T19:16:07.195Z&quot;,&quot;updated_at&quot;:&quot;2021-10-15T19:16:07.195Z&quot;},{&quot;id&quot;:&quot;95547721&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;file_browser_onboarded&quot;,&quot;created_at&quot;:&quot;2020-01-05T20:10:57.871Z&quot;,&quot;updated_at&quot;:&quot;2020-01-05T20:10:57.871Z&quot;},{&quot;id&quot;:&quot;94131025&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;gifs_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.075Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.075Z&quot;},{&quot;id&quot;:&quot;140204511&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;has_seen_new_team_create_pointer&quot;,&quot;created_at&quot;:&quot;2020-07-16T16:18:43.272Z&quot;,&quot;updated_at&quot;:&quot;2020-07-16T16:18:43.272Z&quot;},{&quot;id&quot;:&quot;159227194&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;has_seen_unified_search_more_results_pointer&quot;,&quot;created_at&quot;:&quot;2020-09-22T14:32:46.253Z&quot;,&quot;updated_at&quot;:&quot;2020-09-22T14:32:46.253Z&quot;},{&quot;id&quot;:&quot;118662203&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;hyperlinks_onboarded&quot;,&quot;created_at&quot;:&quot;2020-04-18T01:51:53.221Z&quot;,&quot;updated_at&quot;:&quot;2020-04-18T01:51:53.221Z&quot;},{&quot;id&quot;:&quot;397162289&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;inherited_noodles_onboarded&quot;,&quot;created_at&quot;:&quot;2021-11-18T23:49:12.707Z&quot;,&quot;updated_at&quot;:&quot;2021-11-18T23:49:41.417Z&quot;},{&quot;id&quot;:&quot;376465589&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;interactive_components_ga_onboarded&quot;,&quot;created_at&quot;:&quot;2021-10-27T23:41:54.876Z&quot;,&quot;updated_at&quot;:&quot;2021-10-28T18:40:04.650Z&quot;},{&quot;id&quot;:&quot;94131005&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;library_modal_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.003Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.003Z&quot;},{&quot;id&quot;:&quot;94131023&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;line_height_update_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.069Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.069Z&quot;},{&quot;id&quot;:&quot;307461166&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;multiple_starting_points_onboarded&quot;,&quot;created_at&quot;:&quot;2021-07-31T13:43:19.037Z&quot;,&quot;updated_at&quot;:&quot;2021-07-31T13:43:19.037Z&quot;},{&quot;id&quot;:&quot;94131027&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;opentype_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.081Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.081Z&quot;},{&quot;id&quot;:&quot;94131017&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;pdf_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.050Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.050Z&quot;},{&quot;id&quot;:&quot;209048589&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;ran_ux_feedback_survey_machine&quot;,&quot;created_at&quot;:&quot;2021-02-08T19:42:28.176Z&quot;,&quot;updated_at&quot;:&quot;2021-12-29T01:19:08.107Z&quot;},{&quot;id&quot;:&quot;187620139&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;scroll_to_onboarded&quot;,&quot;created_at&quot;:&quot;2020-12-11T19:56:25.095Z&quot;,&quot;updated_at&quot;:&quot;2020-12-11T19:56:25.095Z&quot;},{&quot;id&quot;:&quot;359466841&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_audio_nux&quot;,&quot;created_at&quot;:&quot;2021-10-08T04:09:47.339Z&quot;,&quot;updated_at&quot;:&quot;2021-10-08T04:09:48.014Z&quot;},{&quot;id&quot;:&quot;346427097&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_audio_onboarding&quot;,&quot;created_at&quot;:&quot;2021-09-22T23:44:30.686Z&quot;,&quot;updated_at&quot;:&quot;2021-09-22T23:44:33.961Z&quot;},{&quot;id&quot;:&quot;318098831&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_command_to_crop_onboarding&quot;,&quot;created_at&quot;:&quot;2021-08-16T18:17:36.874Z&quot;,&quot;updated_at&quot;:&quot;2021-08-16T18:17:36.874Z&quot;},{&quot;id&quot;:&quot;397150085&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_comments_onboarding&quot;,&quot;created_at&quot;:&quot;2021-11-18T23:19:39.485Z&quot;,&quot;updated_at&quot;:&quot;2021-11-18T23:19:45.139Z&quot;},{&quot;id&quot;:&quot;255204603&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_community_comments_onboarding&quot;,&quot;created_at&quot;:&quot;2021-04-29T17:39:35.834Z&quot;,&quot;updated_at&quot;:&quot;2021-04-29T17:39:37.941Z&quot;},{&quot;id&quot;:&quot;421414951&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_community_comments_tips&quot;,&quot;created_at&quot;:&quot;2021-12-21T01:40:07.862Z&quot;,&quot;updated_at&quot;:&quot;2021-12-21T01:40:07.862Z&quot;},{&quot;id&quot;:&quot;155410413&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_community_hub_landing_editor_onboarding&quot;,&quot;created_at&quot;:&quot;2020-09-09T17:55:41.676Z&quot;,&quot;updated_at&quot;:&quot;2020-09-09T17:55:41.676Z&quot;},{&quot;id&quot;:&quot;195740002&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_community_hub_search_onboarding&quot;,&quot;created_at&quot;:&quot;2021-01-10T19:08:27.460Z&quot;,&quot;updated_at&quot;:&quot;2021-01-10T19:08:27.460Z&quot;},{&quot;id&quot;:&quot;253206264&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_config_announcements&quot;,&quot;created_at&quot;:&quot;2021-04-27T02:05:33.619Z&quot;,&quot;updated_at&quot;:&quot;2021-04-27T02:05:35.664Z&quot;},{&quot;id&quot;:&quot;347318514&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_copy_paste_v4_onboarding&quot;,&quot;created_at&quot;:&quot;2021-09-23T17:52:35.468Z&quot;,&quot;updated_at&quot;:&quot;2021-09-23T17:52:38.124Z&quot;},{&quot;id&quot;:&quot;409747250&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_delayed_community_callout&quot;,&quot;created_at&quot;:&quot;2021-12-04T21:53:33.985Z&quot;,&quot;updated_at&quot;:&quot;2021-12-04T21:53:36.362Z&quot;},{&quot;id&quot;:&quot;300375959&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_figjam_editor_nudge&quot;,&quot;created_at&quot;:&quot;2021-07-21T17:39:00.799Z&quot;,&quot;updated_at&quot;:&quot;2021-07-21T17:39:00.799Z&quot;},{&quot;id&quot;:&quot;365997051&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_figjam_high_fives_onboarding&quot;,&quot;created_at&quot;:&quot;2021-10-16T21:09:59.803Z&quot;,&quot;updated_at&quot;:&quot;2021-10-16T21:09:59.803Z&quot;},{&quot;id&quot;:&quot;417433689&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_figjam_highlighter_eraser_onboarding&quot;,&quot;created_at&quot;:&quot;2021-12-14T23:37:12.175Z&quot;,&quot;updated_at&quot;:&quot;2021-12-14T23:37:12.175Z&quot;},{&quot;id&quot;:&quot;379344093&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_figjam_import_export_onboarding&quot;,&quot;created_at&quot;:&quot;2021-10-30T19:35:28.388Z&quot;,&quot;updated_at&quot;:&quot;2021-10-30T19:35:30.539Z&quot;},{&quot;id&quot;:&quot;417361207&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_figjam_media_onboarding&quot;,&quot;created_at&quot;:&quot;2021-12-14T20:49:28.261Z&quot;,&quot;updated_at&quot;:&quot;2021-12-14T20:49:38.368Z&quot;},{&quot;id&quot;:&quot;365531933&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_figjam_quick_create_drag_onboarding&quot;,&quot;created_at&quot;:&quot;2021-10-15T20:35:23.058Z&quot;,&quot;updated_at&quot;:&quot;2021-10-15T20:39:35.454Z&quot;},{&quot;id&quot;:&quot;139676616&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_file_template_dropdown_tooltip&quot;,&quot;created_at&quot;:&quot;2020-07-14T16:59:34.904Z&quot;,&quot;updated_at&quot;:&quot;2020-07-14T16:59:34.904Z&quot;},{&quot;id&quot;:&quot;136885528&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_file_template_move_to_folder_tooltip&quot;,&quot;created_at&quot;:&quot;2020-07-03T02:57:16.641Z&quot;,&quot;updated_at&quot;:&quot;2020-07-03T02:57:16.641Z&quot;},{&quot;id&quot;:&quot;399041501&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_insert_component_onboarding&quot;,&quot;created_at&quot;:&quot;2021-11-21T21:52:20.955Z&quot;,&quot;updated_at&quot;:&quot;2021-11-21T21:52:26.934Z&quot;},{&quot;id&quot;:&quot;333906924&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_recents_sidebar_nudge&quot;,&quot;created_at&quot;:&quot;2021-09-07T18:39:23.761Z&quot;,&quot;updated_at&quot;:&quot;2021-09-07T18:39:29.903Z&quot;},{&quot;id&quot;:&quot;136892068&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_remote_work_templates_intro&quot;,&quot;created_at&quot;:&quot;2020-07-03T03:33:09.425Z&quot;,&quot;updated_at&quot;:&quot;2020-07-03T03:33:09.425Z&quot;},{&quot;id&quot;:&quot;370359935&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_timer_announcements&quot;,&quot;created_at&quot;:&quot;2021-10-21T17:02:49.629Z&quot;,&quot;updated_at&quot;:&quot;2021-10-21T17:02:55.497Z&quot;},{&quot;id&quot;:&quot;377880345&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;seen_ux_feedback_survey&quot;,&quot;created_at&quot;:&quot;2021-10-29T01:03:20.574Z&quot;,&quot;updated_at&quot;:&quot;2021-10-29T01:03:22.585Z&quot;},{&quot;id&quot;:&quot;94131011&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;shared_component_library_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.025Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.025Z&quot;},{&quot;id&quot;:&quot;94131013&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;shared_component_publish_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.031Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.031Z&quot;},{&quot;id&quot;:&quot;94131029&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;smart_animate_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.087Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.087Z&quot;},{&quot;id&quot;:&quot;95564666&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;smart_selection_onboarded&quot;,&quot;created_at&quot;:&quot;2020-01-06T00:14:42.447Z&quot;,&quot;updated_at&quot;:&quot;2020-01-06T00:14:42.447Z&quot;},{&quot;id&quot;:&quot;94131015&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;styles_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:46.044Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:46.044Z&quot;},{&quot;id&quot;:&quot;236377452&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;text_bulleted_lists_onboarded&quot;,&quot;created_at&quot;:&quot;2021-04-02T22:05:48.774Z&quot;,&quot;updated_at&quot;:&quot;2021-04-02T22:05:50.389Z&quot;},{&quot;id&quot;:&quot;94119556&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;use_numbers_for_opacity&quot;,&quot;created_at&quot;:&quot;2019-12-23T20:34:13.748Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T20:34:13.748Z&quot;},{&quot;id&quot;:&quot;172403232&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;variants_onboarded&quot;,&quot;created_at&quot;:&quot;2020-10-30T01:10:52.412Z&quot;,&quot;updated_at&quot;:&quot;2020-10-30T01:10:52.412Z&quot;},{&quot;id&quot;:&quot;94131003&quot;,&quot;user_id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;welcome_onboarded&quot;,&quot;created_at&quot;:&quot;2019-12-23T23:12:45.906Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T23:12:45.906Z&quot;}],&quot;user_data&quot;:{&quot;id&quot;:&quot;791040926626200281&quot;,&quot;name&quot;:&quot;lily liu&quot;,&quot;email&quot;:&quot;yizimiliu@gmail.com&quot;,&quot;handle&quot;:&quot;lily liu&quot;,&quot;img_url&quot;:&quot;https://www.gravatar.com/avatar/58bf40c87bd5cb8afb161ca24868b468?size=240\u0026default=https%3A%2F%2Fs3-alpha.figma.com%2Fstatic%2Fuser_l_v2.png&quot;,&quot;created_at&quot;:&quot;2019-12-23T20:34:13.737Z&quot;,&quot;email_validated_at&quot;:&quot;2019-12-23T20:34:13.762Z&quot;,&quot;unsubscribed_at&quot;:null,&quot;utc_offset&quot;:null,&quot;profile&quot;:{&quot;job_title&quot;:&quot;designer&quot;},&quot;phone_number&quot;:null,&quot;student_validated_at&quot;:&quot;2021-02-25T17:48:43.398Z&quot;,&quot;description&quot;:null,&quot;plugin_publishing_blocked_at&quot;:null,&quot;community_commenting_blocked_at&quot;:null,&quot;dev_tokens&quot;:[],&quot;oauth_tokens&quot;:[],&quot;realtime_token&quot;:&quot;/me-791040926626200281:1642367257:0:9f5c0ad985c90a15f71c980db2126b2e9fd83d22&quot;,&quot;realtime_token_inactive&quot;:&quot;/user-inactive-791040926626200281:1642367257:0:715facdf6bf417598878d57947e82d1cb42ffe1f&quot;,&quot;two_factor_enabled&quot;:false,&quot;two_factor_app_enabled&quot;:false,&quot;google_sso_only&quot;:&quot;2019-12-23T20:34:13.735Z&quot;,&quot;saml_sso_only&quot;:false,&quot;experiment_seed&quot;:&quot;828781&quot;,&quot;community_profile_id&quot;:null,&quot;community_profile_handle&quot;:null,&quot;community_beta_at&quot;:null,&quot;locale&quot;:&quot;en&quot;,&quot;experiment_assignments&quot;:[],&quot;teams&quot;:[{&quot;id&quot;:&quot;1030891320525041379&quot;,&quot;name&quot;:&quot;HCDE 518&quot;,&quot;created_at&quot;:&quot;2021-10-15T17:14:03.842Z&quot;,&quot;img_url&quot;:null,&quot;synced_at&quot;:null,&quot;providers&quot;:null,&quot;stripe_customer_id&quot;:null,&quot;subscription&quot;:null,&quot;editors&quot;:10,&quot;projects&quot;:1,&quot;student_team_at&quot;:null,&quot;student_autoverifying_team_at&quot;:null,&quot;grace_period_end&quot;:null,&quot;org_id&quot;:null,&quot;img_urls&quot;:null,&quot;org_access&quot;:null,&quot;deleted_at&quot;:null,&quot;blocked_at&quot;:null,&quot;trial_period_end&quot;:null,&quot;description&quot;:null,&quot;deleted_by&quot;:null,&quot;experiment_seed&quot;:471106,&quot;workspace_id&quot;:null,&quot;license_group_id&quot;:null,&quot;restrictions_list&quot;:[&quot;projects_limited&quot;,&quot;files_limited&quot;],&quot;student_team&quot;:false,&quot;subscription_raw&quot;:null,&quot;community_profile_id&quot;:null,&quot;community_profile_handle&quot;:null,&quot;is_paid&quot;:false,&quot;experiment_assignments&quot;:[]},{&quot;id&quot;:&quot;1026214575041743816&quot;,&quot;name&quot;:&quot;HCDE 508 - FA 2021&quot;,&quot;created_at&quot;:&quot;2021-10-02T19:30:20.830Z&quot;,&quot;img_url&quot;:&quot;https://s3-alpha.figma.com/profile/6e91563c-55cd-4230-be06-4a27e70afe09&quot;,&quot;synced_at&quot;:null,&quot;providers&quot;:null,&quot;stripe_customer_id&quot;:null,&quot;subscription&quot;:null,&quot;editors&quot;:44,&quot;projects&quot;:6,&quot;student_team_at&quot;:&quot;2021-10-02T19:30:35.109Z&quot;,&quot;student_autoverifying_team_at&quot;:null,&quot;grace_period_end&quot;:null,&quot;org_id&quot;:null,&quot;img_urls&quot;:{&quot;500_500&quot;:&quot;https://s3-alpha.figma.com/profile/2879fbf5-89ca-40a4-8f52-41783508f42b&quot;},&quot;org_access&quot;:null,&quot;deleted_at&quot;:null,&quot;blocked_at&quot;:null,&quot;trial_period_end&quot;:null,&quot;description&quot;:null,&quot;deleted_by&quot;:null,&quot;experiment_seed&quot;:12916,&quot;workspace_id&quot;:null,&quot;license_group_id&quot;:null,&quot;restrictions_list&quot;:[],&quot;student_team&quot;:true,&quot;subscription_raw&quot;:null,&quot;community_profile_id&quot;:null,&quot;community_profile_handle&quot;:null,&quot;is_paid&quot;:false,&quot;experiment_assignments&quot;:[]},{&quot;id&quot;:&quot;898011171717970341&quot;,&quot;name&quot;:&quot;Hack the 6ix 2021&quot;,&quot;created_at&quot;:&quot;2020-10-14T00:55:47.577Z&quot;,&quot;img_url&quot;:null,&quot;synced_at&quot;:null,&quot;providers&quot;:null,&quot;stripe_customer_id&quot;:null,&quot;subscription&quot;:null,&quot;editors&quot;:12,&quot;projects&quot;:9,&quot;student_team_at&quot;:&quot;2020-10-14T00:56:49.265Z&quot;,&quot;student_autoverifying_team_at&quot;:null,&quot;grace_period_end&quot;:null,&quot;org_id&quot;:null,&quot;img_urls&quot;:null,&quot;org_access&quot;:null,&quot;deleted_at&quot;:null,&quot;blocked_at&quot;:null,&quot;trial_period_end&quot;:null,&quot;description&quot;:null,&quot;deleted_by&quot;:null,&quot;experiment_seed&quot;:589067,&quot;workspace_id&quot;:null,&quot;license_group_id&quot;:null,&quot;restrictions_list&quot;:[],&quot;student_team&quot;:true,&quot;subscription_raw&quot;:null,&quot;community_profile_id&quot;:null,&quot;community_profile_handle&quot;:null,&quot;is_paid&quot;:false,&quot;experiment_assignments&quot;:[]}]},&quot;smart_token&quot;:null,&quot;resource_type&quot;:null,&quot;email&quot;:null,&quot;user_ip&quot;:&quot;98.225.48.34&quot;,&quot;redirect_url&quot;:null,&quot;email_token&quot;:null,&quot;access_code&quot;:null,&quot;existing_session&quot;:false,&quot;editing_file&quot;:{&quot;creator_id&quot;:&quot;791040926626200281&quot;,&quot;updated_at&quot;:&quot;2021-12-25T22:48:01.132Z&quot;,&quot;key&quot;:&quot;tDHakWrUYatXyxzuHNDpSg&quot;,&quot;name&quot;:&quot;MOL Business Toolkit&quot;,&quot;description&quot;:null,&quot;folder_id&quot;:&quot;5337961&quot;,&quot;scheme&quot;:null,&quot;track_tags&quot;:null,&quot;team_id&quot;:null,&quot;link_access&quot;:&quot;view&quot;,&quot;trashed_user_id&quot;:null,&quot;client_meta&quot;:&quot;{\&quot;background_color\&quot;:{\&quot;r\&quot;:0.89803922176361084,\&quot;g\&quot;:0.89803922176361084,\&quot;b\&quot;:0.89803922176361084,\&quot;a\&quot;:1.0},\&quot;thumbnail_size\&quot;:{\&quot;width\&quot;:154,\&quot;height\&quot;:799},\&quot;render_coordinates\&quot;:{\&quot;x\&quot;:-3722.0,\&quot;y\&quot;:-18671.156250,\&quot;width\&quot;:7145.0,\&quot;height\&quot;:37058.156250}}&quot;,&quot;license&quot;:null,&quot;parent_org_id&quot;:null,&quot;org_browsable&quot;:null,&quot;thumbnail_url_override&quot;:null,&quot;thumbnail_guid&quot;:null,&quot;proto_link_access&quot;:null,&quot;org_audience&quot;:false,&quot;file_repo_id&quot;:null,&quot;source_file_key&quot;:null,&quot;source_checkpoint_id&quot;:null,&quot;editor_type&quot;:&quot;design&quot;,&quot;branch_checkpoint_id&quot;:null,&quot;workspace_id&quot;:null,&quot;url&quot;:&quot;https://www.figma.com/file/tDHakWrUYatXyxzuHNDpSg/MOL-Business-Toolkit&quot;,&quot;edit_url&quot;:&quot;https://www.figma.com/file/tDHakWrUYatXyxzuHNDpSg/MOL-Business-Toolkit&quot;,&quot;prototype_url&quot;:&quot;https://www.figma.com/proto/tDHakWrUYatXyxzuHNDpSg/MOL-Business-Toolkit&quot;,&quot;viewer_export_restricted&quot;:false,&quot;thumbnail_url&quot;:&quot;https://s3-alpha-sig.figma.com/thumbnails/44c71e2e-de71-4ee8-87af-8dc07acedad4?Expires=1642982400\u0026Signature=D5YC6A44fH8HJAf7qkEByP5Jj-bI6vSe2tG3cZbl55hh3qWYTJrNZu3AOnWWVsR8Kx6FKWBc2MhbTCvsJeJoWrKBvQcJ5th8p-dse~tefRCzaVpxyPG3LQVhK8fQz5aXNbaYC-gLezJlbyyxLYQWiuqHyks-rbKs31MEPUastYEoUA2oucFPoZqMfU6R8QIbWoXrJ8IkqVCr2TUYBujsEnZ~zlzZwxD8KYO~obLuvx28U7j-lrimivS37dq4hbf2F3Gy2kEiaK9zhtEeP2EmWqhHlbyTZNzXb2r9C-1O~PKJ242hu6a9tzs-lxpDMxbeO4yO2krfMDPqe8IsmYBZbw__\u0026Key-Pair-Id=APKAINTVSUGEWH5XD5UA&quot;,&quot;source_checkpoint_key&quot;:null,&quot;source_checkpoint_created_at&quot;:null,&quot;created_at&quot;:&quot;2020-12-23T15:01:02Z&quot;,&quot;deleted_at&quot;:null,&quot;trashed_at&quot;:null,&quot;folder&quot;:{&quot;id&quot;:&quot;5337961&quot;,&quot;created_at&quot;:&quot;2019-12-23T20:34:13.804Z&quot;,&quot;updated_at&quot;:&quot;2019-12-23T20:34:13.804Z&quot;,&quot;scheme&quot;:null,&quot;path&quot;:&quot;&quot;,&quot;settings&quot;:null,&quot;team_id&quot;:null,&quot;view_only_at&quot;:null,&quot;org_id&quot;:null,&quot;deleted_at&quot;:null,&quot;description&quot;:null,&quot;parent_path&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;is_invite_only&quot;:false,&quot;is_view_only&quot;:false},&quot;team&quot;:null,&quot;team_user&quot;:null,&quot;org&quot;:null,&quot;org_user&quot;:null,&quot;edu_grace_period&quot;:null,&quot;file_repo&quot;:null,&quot;source_file&quot;:null,&quot;show_edit_button&quot;:false,&quot;can_edit&quot;:true,&quot;can_manage&quot;:true},&quot;disable_realtime&quot;:true,&quot;is_embed&quot;:true,&quot;zeplin_plugin_id&quot;:&quot;745330164019088593&quot;,&quot;avocode_plugin_id&quot;:&quot;821674268995163810&quot;,&quot;org_id&quot;:null,&quot;is_cloudfront&quot;:true,&quot;iso_code&quot;:&quot;US&quot;,&quot;viewer_city&quot;:&quot;Seattle&quot;,&quot;pro_trials_v2_imported_component_file_name&quot;:&quot;Music App&quot;,&quot;pro_trials_v2_published_team_library_file_name&quot;:&quot;Music App Design Library&quot;,&quot;segment_web_key&quot;:&quot;6Zhdn0wK1GLYzCsb0LIK0oQplS5TXcB2&quot;,&quot;segment_fullscreen_key&quot;:&quot;6uxDivlUmLf95lHRk0R8bZvr8zDxbX5E&quot;,&quot;stripe_api_public&quot;:&quot;pk_live_LKZ0RKjSZG2D2pwdtwrAhkiJ&quot;,&quot;google_tag_manager_iframe_url&quot;:&quot;https://marketing.figma.com&quot;,&quot;recaptcha_v3_ent_site_key&quot;:&quot;6Le0W80aAAAAAGU9L7qz4o9tQVqrdJVv2M8XHIcd&quot;,&quot;release_manifest_hash&quot;:&quot;5e442ca6950e312bbe87198fec6d7d55&quot;,&quot;release_manifest_git_commit&quot;:&quot;4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09&quot;,&quot;release_server_git_commit&quot;:&quot;8162dcf17869f8106de113cf79b9c6d5d01cc03a&quot;,&quot;release_git_tag&quot;:&quot;release-2022-01-13&quot;},&quot;EARLY_ARGS&quot;:{&quot;omit_core_data&quot;:false,&quot;file_minimal_user_state&quot;:false,&quot;multiplayer_preconnect_options&quot;:{&quot;fileKey&quot;:&quot;tDHakWrUYatXyxzuHNDpSg&quot;,&quot;role&quot;:&quot;prototype&quot;,&quot;oauthToken&quot;:null}},&quot;Fig&quot;:{&quot;importShimURL&quot;:&quot;https://static.figma.com/fullscreen/1d661ca0b68333f2afbcd225ae30296d65d75d89/import.shim.js.br&quot;,&quot;importWorkerURL&quot;:&quot;https://static.figma.com/fullscreen/1d661ca0b68333f2afbcd225ae30296d65d75d89/import.worker.js.br&quot;,&quot;figMigratorURL&quot;:&quot;https://static.figma.com/fullscreen/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/fig_migrator.js.br&quot;,&quot;jsvmCppURLs&quot;:{&quot;jsvm-cpp.js&quot;:&quot;https://static.figma.com/fullscreen/da00c86749491ba844de40ae0a1dcaae6da17aaf/jsvm-cpp.js.br&quot;,&quot;jsvm-cpp.wasm&quot;:&quot;https://static.figma.com/fullscreen/da00c86749491ba844de40ae0a1dcaae6da17aaf/jsvm-cpp.wasm.br&quot;},&quot;fullscreenURLs&quot;:{&quot;compiled_wasm.js&quot;:&quot;https://static.figma.com/fullscreen/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/compiled_wasm.js.br&quot;,&quot;compiled_wasm.wasm&quot;:&quot;https://static.figma.com/fullscreen/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/compiled_wasm.wasm.br&quot;},&quot;fullscreenScriptHash&quot;:&quot;a1c529d5a774e2ae1ce945f9c37be2805a1724ca&quot;,&quot;librarySearchWorkerURL&quot;:&quot;https://www.figma.com/esbuild-artifacts/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/js/library_search_worker.min.js.br&quot;,&quot;migrationURLs&quot;:{&quot;file_migrations_wasm.js&quot;:&quot;https://static.figma.com/fullscreen/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/file_migrations_wasm.js&quot;,&quot;file_migrations_wasm_bg.wasm&quot;:&quot;https://static.figma.com/fullscreen/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/file_migrations_wasm_bg.wasm&quot;},&quot;viewerScriptURL&quot;:&quot;https://static.figma.com/fullscreen/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/viewer.js.br&quot;,&quot;viewerWorkerURL&quot;:&quot;https://static.figma.com/fullscreen/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/imagedecoder.js.br&quot;}}">
+  Object.assign(window, JSON.parse(document.currentScript.dataset.initial));
+</script>
+<script nonce="" data-frontend-commit="4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09">
+  console.log('Running frontend commit', document.currentScript.dataset.frontendCommit);
+</script>
+<script nonce="">
+window.FIGMA_BUNDLE = (function () {
+  const pathsForModules = (() => {
+    const _paths = {
+      'heic': "https://www.figma.com/esbuild-artifacts/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/js/heic.min.js.br",
+    };
+
+    const _loadedPaths = new Set()
+    return {
+      get: (key) => {
+        return _paths[key];
+      },
+      hasLoaded: (key) => {
+        return _loadedPaths.has(key)
+      },
+      setHasLoaded: (key) => {
+        return _loadedPaths.add(key)
+      },
+    };
+  })();
+
+  const values = {};
+  const promises = {};
+
+  return {
+    export: function (name, value) {
+      if (!pathsForModules.get(name)) {
+        console.warn('please add the "js_path" declaration in "pathsForModules" for "' + name + '".');
+        return;
+      }
+      values[name] = value;
+    },
+
+    import: function (name) {
+      const FAILURE_TEXT = 'failed to load "' + name + '" module!'
+      if (values[name]) return Promise.resolve(values[name])
+
+      const path = pathsForModules.get(name);
+      if (!pathsForModules.get(name)) {
+        return Promise.reject({ error: FAILURE_TEXT + ' "' + name + '" has not been added to "pathsForModules".' })
+      }
+
+      if (promises[path]) {
+        return new Promise((resolve, reject) => {
+          promises[path].then(_ => resolve(values[name])).catch(error => reject({ error }));
+        });
+      }
+
+      const promise = new Promise((resolve, reject) => {
+        if (promises[path]) return;
+
+        const script = document.createElement("script");
+        script.setAttribute("async", true);
+        script.setAttribute("nonce", "bPbXUyekXyO3TY3vt3vkSQ==")
+
+        script.onload = function () {
+          resolve(values[name])
+        };
+        script.onerror = function (error) {
+          reject(error)
+        };
+
+        script.src = pathsForModules.get(name);
+        pathsForModules.setHasLoaded(name);
+        document.body.appendChild(script)
+      });
+      promises[path] = promise;
+      return promise;
+    },
+  };
+})();
+</script>
+  <script nonce="">
+    (()=>{self.global=self;var c=(s,o,a)=>{if(s)window.userStateXHR={readyState:4,status:200,responseText:s};else if(window.Fig){if(!window.INITIAL_OPTIONS.user_data){window.startUserStateXHR=()=>{};return}window.startUserStateXHR=function(i){var d;var e="/api/user/state",t=[];window.INITIAL_OPTIONS.org_id&&t.push("org_id="+window.INITIAL_OPTIONS.org_id),a&&t.push("omit_core_data=1"),i&&t.push("file_key="+i),t.length!==0&&(e+="?"+t.join("&")),window.userStateXHR=new XMLHttpRequest,window.userStateXHR.open("GET",e);let n=(d=window.INITIAL_OPTIONS.user_data)==null?void 0:d.id;n&&window.userStateXHR.setRequestHeader("X-Figma-User-ID",n),window.userStateXHR.send();var w=window.performance?window.performance.now():-1;window.userStateXHR.addEventListener("load",function(){window.userStateXHRDuration=window.performance?window.performance.now()-w:-1},!1),window.sessionStateXHR=new XMLHttpRequest,window.sessionStateXHR.open("GET","/api/session/state"),n&&window.sessionStateXHR.setRequestHeader("X-Figma-User-ID",n),window.sessionStateXHR.send()};let r=location.pathname==="/preload-editor"||location.pathname==="/file/new",l=window.INITIAL_OPTIONS.editing_file&&window.INITIAL_OPTIONS.editing_file.key;o?window.startUserStateXHR(l):r||window.startUserStateXHR()}},u=s=>{var l;let o=(l=window.INITIAL_OPTIONS.user_data)==null?void 0:l.id,a=window.INITIAL_OPTIONS.tracking_session_id,r=window.INITIAL_OPTIONS.release_manifest_git_commit;window.mpGlobal={version:59,sock:null,msgs:[],perfMetrics:[],url({fileKey:i,role:e,oauthToken:t,nodeIds:n}){let w=null;s&&i===s.fileKey&&s.targetFileVersion&&(w=s.targetFileVersion);let d="";(e==="editor"||e==="viewerWithCpp")&&n&&(d=`&scenegraph-queries-initial-nodes=${n}`);let I=window.INITIAL_OPTIONS.feature_flags,p=e==="editor"&&I.multiplayer_zstd_compression||e==="viewerWithCpp"&&I.multiplayer_zstd_compression||(e==="prototype"||e==="viewer")&&I.viewer_multiplayer_zstd;return`${location.protocol.replace("http","ws")}//${location.host}/api/multiplayer/${i}?role=${e}&tracking_session_id=${a}&version=${this.version}`+(t?"&oauth_token="+t:"")+d+(p?"&compression=zstd":"")+(o?`&user-id=${o}`:"")+(w?`&target-file-version=${w}`:"")+(r?`&client_release=${r}`:"")},preconnect(i){if(this.sock){if(i===this.sock.url&&this.sock.readyState!==WebSocket.CLOSED)return;try{this.sock.close()}catch(e){}}this.sock=new WebSocket(i),this.sock.binaryType="arraybuffer",this.sock.onopen=e=>{this.perfMetrics.push({key:"mp-ws-onopen",ts:performance.now(),nBytes:void 0})},this.sock.onmessage=e=>{let t=new Uint8Array(e.data);this.msgs.push(t),this.perfMetrics.push({key:"mp-ws-onmessage",ts:performance.now(),nBytes:t.length*t.BYTES_PER_ELEMENT})},this.msgs=[],this.perfMetrics=[]}},s&&mpGlobal.preconnect(mpGlobal.url(s))};(()=>{let{file_minimal_user_state:s,mock_user_state_for_tests_json:o,multiplayer_preconnect_options:a,omit_core_data:r}=window.EARLY_ARGS||{};window.INITIAL_OPTIONS||(window.INITIAL_OPTIONS={}),c(o,s,r),u(a)})();})();
+
+//# sourceMappingURL=https://admin.figma.com/admin/esbuild-artifacts/4e0cd02597b154c994ef3e1ac2bf85bc99dc0b09/js/early.min.js.map
+  </script>
+
+
+    <meta name="google" content="notranslate">
+    <meta name="slack-app-id" content="A01N2QYSA81">
+
+    <title>▶ Final - MOL Business Toolkit</title>
+
+    <style type="text/css">
+  #filebrowser-loading-page {
+    opacity: 1;
+    -webkit-transition: opacity .2s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+
+    /* Make sure the loading page is flush with the edges of the page so
+       our layout isnt affected by browser default margins/paddings */
+    position: absolute;
+    top: 48px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  #loading-content-pane {
+    opacity: 1;
+    -webkit-transition: opacity .4s ease-in-out;
+  }
+
+  #filebrowser-loading-page.fadeOut, #loading-content-pane.fadeOut {
+    opacity: 0;
+  }
+
+  #filebrowser-loading-page.hidden {
+    display: none;
+    opacity: 0;
+  }
+
+  .filebrowser-loading-page .file-grid.create-file-grid {
+    margin: 24px 0px;
+    grid-gap: 16px;
+  }
+
+  /* HAX: see loading-page-container in loading_spinner.tsx */
+  #loading-page-container .create-file-grid {
+    display: none;
+  }
+  #loading-page-container .sort-dropdown {
+    margin-top: 0px;
+  }
+
+ /*
+  * HAX: The sidebar is cloned and used independently outside of this
+  * page so any styles like `.filebrowser-loading-page .thing` applied
+  * to sidebar sub-elements also need a selector like
+  * `.filebrowser-loading-sidebar .thing` so that they work outside of
+  * this page too.
+  */
+  .filebrowser-loading-page .row,
+  .filebrowser-loading-sidebar .row {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    height: 16px;
+  }
+
+  .filebrowser-loading-page .circle,
+  .filebrowser-loading-sidebar .circle {
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .filebrowser-loading-page .row .circle,
+  .filebrowser-loading-sidebar .row .circle {
+    position: relative;
+    top: -1px;
+    left: -35px;
+  }
+
+  .filebrowser-loading-sidebar {
+    flex: 0 0 224px;
+    background-color: white;
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filebrowser-loading-page .navbar {
+    height: 48px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #2C2C2C;
+    z-index: 1;
+  }
+
+  .filebrowser-loading-sidebar .row {
+    width: 85px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    margin-left: 48px;
+  }
+
+  .filebrowser-loading-sidebar .row .circle {
+    position: relative;
+    top: -1px;
+    left: -35px;
+  }
+
+  .filebrowser-loading-page .divider,
+  .filebrowser-loading-sidebar .divider {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    margin-bottom: 12px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .filebrowser-loading-sidebar .row:nth-child(7) { width: 40px; }
+  .filebrowser-loading-sidebar .row:nth-child(8) { width: 58px; }
+
+  .filebrowser-loading-sidebar .row:nth-last-child(1) { opacity: 0.4; width: 65px; }
+  .filebrowser-loading-sidebar .row:nth-last-child(2) { opacity: 0.4; width: 65px; }
+  .filebrowser-loading-sidebar .row:nth-last-child(3) { opacity: 0.8; width: 46px; }
+
+  .filebrowser-loading-page .page {
+    flex: 1 1;
+    box-sizing: border-box;
+    border-left: 1px #e5e5e5 solid;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filebrowser-loading-page .toolbar {
+    border-bottom: 1px #e5e5e5 solid;
+    height: 48px;
+  }
+
+  .filebrowser-loading-page .toolbar .item {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    width: 85px;
+    height: 16px;
+    margin-left: 32px;
+    margin-top: 16px;
+  }
+
+  .filebrowser-loading-page .columns {
+    flex: 1 1;
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 32px;
+  }
+
+  @media (max-width: 849px) {
+    .filebrowser-loading-page .columns {
+      flex-direction: column;
+    }
+
+    .filebrowser-loading-page .right-column {
+      padding-left: 32px;
+    }
+
+    .filebrowser-loading-page .public-header + .columns {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .filebrowser-loading-page .content {
+    flex: 1 1;
+  }
+
+  .filebrowser-loading-page .sort-dropdown {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    width: 72px;
+    height: 16px;
+    margin: 24px 32px;
+  }
+
+  .filebrowser-loading-page .create-file-tile {
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    height: 72px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 832px) {
+    .filebrowser-loading-page .create-file-tile {
+      height: 48px;
+    }
+  }
+
+  @media (max-width: 645px) {
+    .filebrowser-loading-page .create-file-tile, .filebrowser-loading-page .sort-dropdown {
+      display: none;
+    }
+  }
+
+  .filebrowser-loading-page .create-file-tile .icon {
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    margin-left: 16px;
+    margin-right: 16px;
+    height: 24px;
+    width: 24px;
+  }
+
+  .filebrowser-loading-page .create-file-tile .label {
+    background-color: #f0f0f0;
+    width: 132px;
+    height: 16px;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 1440px) {
+   .filebrowser-loading-page .create-file-tile:nth-last-child(1) {
+     display: none;
+   }
+  }
+
+  .filebrowser-loading-page .tile {
+    height: 59px;
+    padding-top: 60%;
+    position: relative;
+  }
+
+  .filebrowser-loading-page .tile .inner {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    background-color: #f0f0f0;
+  }
+
+  .filebrowser-loading-page .tile .inner .lower {
+    height: 59px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .filebrowser-loading-page .public-grid {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+    grid-gap: 32px;
+    padding-left: 32px;
+  }
+
+  @media (max-width: 1023px) {
+    .filebrowser-loading-page .public-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .filebrowser-loading-page .public-grid .tile {
+    height: 59px;
+    padding-top: 60%;
+  }
+
+  .filebrowser-loading-page .public-grid .tile:nth-child(6) { opacity: .8; }
+  .filebrowser-loading-page .public-grid .tile:nth-child(7) { opacity: .4; }
+
+  .filebrowser-loading-page .file-grid {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+    grid-gap: 32px;
+    padding-left: 32px;
+  }
+
+  .filebrowser-loading-page .file-grid .tile:nth-child(6) { opacity: .8; }
+  .filebrowser-loading-page .file-grid .tile:nth-child(7) { opacity: .4; }
+
+  .filebrowser-loading-page .team-grid {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+    grid-gap: 32px 32px;
+    padding: 32px 0 0 32px;
+    align-content: start;
+  }
+
+  .filebrowser-loading-page .team-tile {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 6px;
+    position: relative;
+    padding: 16px;
+  }
+
+  .filebrowser-loading-page .team-grid .team-tile:nth-child(6) { opacity: .8; }
+  .filebrowser-loading-page .team-grid .team-tile:nth-child(7) { opacity: .4; }
+
+  .filebrowser-loading-page .team-tile .row {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  .filebrowser-loading-page .team-tile .row:nth-child(1) {
+    width: 32px;
+    height: 32px;
+  }
+
+  .filebrowser-loading-page .team-tile .row:nth-child(2) {
+    width: 65px;
+    height: 30px;
+    position: absolute;
+    top: 17px;
+    right: 16px;
+    margin-top: 0;
+  }
+
+  .filebrowser-loading-page .team-tile .row:nth-child(3) {
+    width: 120px;
+    margin-top: 20px;
+  }
+  .filebrowser-loading-page .team-tile .row:nth-child(4) {
+    width: 232px;
+    margin-top: 12px;
+  }
+  .filebrowser-loading-page .team-tile .row:nth-child(5) {
+    width: 174px;
+    margin-top: 8px;
+  }
+
+  .filebrowser-loading-page .team-tile .circles {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .filebrowser-loading-page .team-tile .circle {
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    margin-top: 22px;
+  }
+
+  .filebrowser-loading-page .public-header {
+    background-color: #f0f0f0;
+    width: 100%;
+    height: 240px;
+    margin-bottom: 80px;
+  }
+
+  .filebrowser-loading-page .profile-header {
+    background-color: #f0f0f0;
+    width: 100%;
+    height: 64px;
+  }
+
+  .filebrowser-loading-page .profile-grid {
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 24px 1fr .75fr;
+    align-items: end;
+  }
+
+  .filebrowser-loading-page .profile-grid .row {
+    margin-top: 24px;
+  }
+
+  .filebrowser-loading-page .profile-grid div:nth-child(4n+1) { width: 148px; }
+  .filebrowser-loading-page .profile-grid div:nth-child(4n+3) { width: 56px; }
+  .filebrowser-loading-page .profile-grid div:nth-child(4n+4) { width: 99px; }
+
+  .filebrowser-loading-page .profile-grid div:nth-child(1) { width: 61px; margin-top: 0; }
+
+  .filebrowser-loading-page .profile-grid div:nth-child(5) { width: 61px; margin-top: 32px; }
+  .filebrowser-loading-page .profile-grid div:nth-child(7) { width: 69px; }
+  .filebrowser-loading-page .profile-grid div:nth-child(8) { width: 51px; }
+
+  .filebrowser-loading-page .profile-grid div:nth-child(9) { margin-top: 36px; }
+  .filebrowser-loading-page .profile-grid div:nth-child(11) { width: 69px; }
+  .filebrowser-loading-page .profile-grid div:nth-child(12) { width: 72px; }
+
+  .filebrowser-loading-page .profile-grid div:nth-child(25),
+  .filebrowser-loading-page .profile-grid div:nth-child(27),
+  .filebrowser-loading-page .profile-grid div:nth-child(28) { opacity: .8; }
+
+  .filebrowser-loading-page .profile-grid div:nth-child(29),
+  .filebrowser-loading-page .profile-grid div:nth-child(31),
+  .filebrowser-loading-page .profile-grid div:nth-child(32) { opacity: .4; }
+
+  @media(max-width: 1000px) {
+    .filebrowser-loading-page .profile-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .filebrowser-loading-page .profile-grid div:nth-child(5),
+    .filebrowser-loading-page .profile-grid div:nth-child(6),
+    .filebrowser-loading-page .profile-grid div:nth-child(7),
+    .filebrowser-loading-page .profile-grid div:nth-child(8),
+    .filebrowser-loading-page .profile-grid div:nth-child(4n+2),
+    .filebrowser-loading-page .profile-grid div:nth-child(4n+3),
+    .filebrowser-loading-page .profile-grid div:nth-child(4n+4) { display: none; }
+  }
+
+  .filebrowser-loading-page .project-grid {
+    padding-left: 32px;
+    display: grid;
+    grid-row-gap: 22px;
+  }
+
+  .filebrowser-loading-page .project-grid .card {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 178px;
+    display: flex;
+  }
+
+  .filebrowser-loading-page .project-grid .card:nth-child(3) { opacity: .8; }
+  .filebrowser-loading-page .project-grid .card:nth-child(4) { opacity: .4; }
+
+  .filebrowser-loading-page .project-grid .card .left {
+    width: 196px;
+    margin: 16px;
+  }
+
+  .filebrowser-loading-page .project-grid .card .right {
+    flex: 1 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+
+  .filebrowser-loading-page .project-grid .card .left .row:nth-child(1) { width: 107px; }
+  .filebrowser-loading-page .project-grid .card .left .row:nth-child(2) { width: 164px; margin-top: 12px; }
+  .filebrowser-loading-page .project-grid .card .left .row:nth-child(3) { width: 145px; margin-top: 8px; }
+  .filebrowser-loading-page .project-grid .card .left .row:nth-child(4) { width: 158px; margin-top: 8px; }
+
+  .filebrowser-loading-page .project-grid .card .right .row {
+    height: 100%;
+    flex: 1 1 196px;
+    margin-right: 16px;
+    border-radius: 6px;
+  }
+
+  .filebrowser-loading-page .right-column {
+    flex: 0 0 304px;
+    margin-right: 16px;
+    margin-top: 16px;
+    box-sizing: border-box;
+    padding-left: 32px;
+  }
+
+  .filebrowser-loading-page .right-column .row:nth-child(1) {
+    margin-top: 16px;
+    width: 120px;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(2) {
+    margin-top: 18px;
+    width: 272px;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(3) {
+    margin-top: 8px;
+    width: 248px;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(4) {
+    margin-top: 8px;
+    width: 272px;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(5) {
+    margin-top: 8px;
+    width: 256px;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(6) {
+    margin-top: 8px;
+    width: 200px;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(7) {
+    margin-top: 35px;
+    width: 88px;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(8) {
+    margin-top: 22px;
+    margin-left: 51px;
+    width: 88px;
+    opacity: .8;
+  }
+  .filebrowser-loading-page .right-column .row:nth-child(9) {
+    margin-top: 18px;
+    margin-left: 51px;
+    width: 88px;
+    opacity: .4;
+  }
+
+  .filebrowser-loading-page .public-left-column {
+    padding: 0 0 32px 32px;
+    width: 320px;
+  }
+
+  .filebrowser-loading-page .public-left-column .row {
+    margin-top: 8px;
+  }
+
+  .filebrowser-loading-page .public-left-column .row:nth-child(1) {
+    width: 120px;
+    margin-top: 0;
+  }
+  .filebrowser-loading-page .public-left-column .row:nth-child(2) {
+    width: 272px;
+    margin-top: 18px;
+  }
+  .filebrowser-loading-page .public-left-column .row:nth-child(3) {
+    width: 248px;
+  }
+  .filebrowser-loading-page .public-left-column .row:nth-child(4) {
+    width: 272px;
+  }
+  .filebrowser-loading-page .public-left-column .row:nth-child(5) {
+    width: 256px;
+    opacity: .8;
+  }
+  .filebrowser-loading-page .public-left-column .row:nth-child(6) {
+    width: 200px;
+    opacity: .4;
+  }
+
+  /*
+  Note: Make sure any changes here are also duplicated in the fullscreen progress bar
+  (.progressBar in progress_bar.css)
+  */
+  #filebrowser-loading-progress-bar {
+    height: 5px;
+      background: #18A0FB;
+    position: absolute;
+    left: 0;
+    animation: filebrowserloadingProgressBar 10s cubic-bezier(.08,.8,.1,1) forwards;
+  }
+
+  @keyframes filebrowserloadingProgressBar {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+
+  @media (max-width: 645px) {
+    .filebrowser-loading-sidebar {
+      display: none;
+    }
+
+    .filebrowser-loading-page .page {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .filebrowser-loading-page .public-header {
+      height: 120px;
+    }
+
+    .filebrowser-loading-page .file-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+      align-self: center;
+    }
+  }
+
+</style>
+
+
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+      <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta property="og:title" content="Figma">
+    <meta property="og:site_name" content="Figma">
+
+    
+
+
+<link rel="icon" sizes="192x192" href="https://static.figma.com/app/icon/1/icon-192.png">
+<link rel="icon" sizes="128x128" href="https://static.figma.com/app/icon/1/icon-128.png">
+
+<link rel="icon" type="image/png" href="https://static.figma.com/app/icon/1/favicon.png">
+<!--[if IE]><link rel="shortcut icon" href="https://static.figma.com/app/icon/1/favicon.ico" type="image/vnd.microsoft.icon" /><![endif]-->
+<link rel="icon" sizes="any" type="image/svg+xml" href="https://static.figma.com/app/icon/1/favicon.svg">
+
+<link rel="apple-touch-icon" sizes="76x76" href="https://static.figma.com/app/icon/1/touch-76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://static.figma.com/app/icon/1/touch-120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://static.figma.com/app/icon/1/touch-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="https://static.figma.com/app/icon/1/touch-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static.figma.com/app/icon/1/touch-180.png">
+
+
+      <link href="./prototype_app.min.css.br" rel="stylesheet">
+
+        <link rel="preload" href="https://static.figma.com/webfont/1/Inter-Regular.woff2?v=3.10" as="font" crossorigin="anonymous">
+        <link rel="preload" href="https://static.figma.com/webfont/1/Inter-Italic.woff2?v=3.10" as="font" crossorigin="anonymous">
+        <link rel="preload" href="https://static.figma.com/webfont/1/Inter-Medium.woff2?v=3.10" as="font" crossorigin="anonymous">
+        <link rel="preload" href="https://static.figma.com/webfont/1/Inter-MediumItalic.woff2?v=3.10" as="font" crossorigin="anonymous">
+        <link rel="preload" href="https://static.figma.com/webfont/1/Inter-SemiBold.woff2?v=3.10" as="font" crossorigin="anonymous">
+        <link rel="preload" href="https://static.figma.com/webfont/1/Inter-SemiBoldItalic.woff2?v=3.10" as="font" crossorigin="anonymous">
+        <link rel="preload" href="https://static.figma.com/webfont/1/DSEG7Classic-Italic-Custom2.woff2" as="font" crossorigin="anonymous">
+
+      <link rel="preload" href="./viewer.js.br" as="script" crossorigin="anonymous" nonce="">
+
+  <script type="text/javascript" async="" nonce="" crossorigin="anonymous" src="./import.shim.js.br"></script><script type="text/javascript" async="" nonce="" crossorigin="anonymous" src="./viewer.js.br"></script></head>
+  <body class="feature_flag_community_curated_page_landing feature_flag_community_ia_refresh feature_flag_figjam_plugins_validation feature_flag_voice_enabled" style="overscroll-behavior: none;">
+      <div style="position: fixed; top: -1000px; left: -1000px;">
+        <div aria-hidden="true" id="font-ui-400-normal">a</div>
+        <div aria-hidden="true" id="font-ui-400-italic">a</div>
+        <div aria-hidden="true" id="font-ui-500-normal">a</div>
+        <div aria-hidden="true" id="font-ui-500-italic">a</div>
+        <div aria-hidden="true" id="font-ui-600-normal">a</div>
+        <div aria-hidden="true" id="font-ui-600-italic">a</div>
+
+        <div aria-hidden="true" id="font-ui-400-normal-white">a</div>
+      </div>
+
+    <div id="react-page"><div class="in_app_page--app--234Z6 in_app_page--appFont--3IVZv"><div class="in_app_page--content--2V_He"><div class="prototype--documentationContainer--JPUjj"><div class="prototype--background--DpPNr " style="background-color: rgb(0, 0, 0);"><div class="header--headerClear--14eAa header--headerHidden--PE8nn"><div class="header--leftColumn--3jpUC header--sideColumn--11Nzb header--column--_eCKx"><a class="header--topLeftWordMark--1O59R"><span class="svg-container"><svg class="svg" width="51" height="18" viewBox="0 0 51 18" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v14.048l1.807.006v-6.69h4.358V5.596H1.807V1.768h5.676V0H0zm10.736 2.852c.651 0 1.18-.527 1.18-1.178 0-.651-.529-1.18-1.18-1.18-.65 0-1.178.529-1.178 1.18 0 .65.527 1.178 1.178 1.178zm-.919 1.769v9.43h1.807v-9.43H9.817z" fill-rule="nonzero" fill-opacity="1" fill="#000" stroke="none"></path><path d="M18.328 4.346c-2.4 0-4.075 2.03-4.075 4.44 0 2.41 1.675 4.44 4.075 4.44 1.1 0 2.005-.426 2.664-1.118v1.255c0 1.563-1.227 2.869-2.829 2.869-.576 0-1.148-.223-1.604-.537l-.905 1.568c.723.466 1.584.737 2.509.737 2.56 0 4.637-2.076 4.637-4.637V4.621h-1.808v.843c-.659-.693-1.565-1.118-2.664-1.118zm-2.267 4.44c0-1.496 1.144-2.672 2.464-2.672 1.32 0 2.464 1.176 2.464 2.672 0 1.496-1.144 2.672-2.464 2.672-1.32 0-2.464-1.176-2.464-2.672z" fill-rule="evenodd" fill-opacity="1" fill="#000" stroke="none"></path><path d="M29.312 6.114c-1.068 0-1.935.905-1.935 1.974v5.963H25.57v-9.43h1.807v.864c.53-.685 1.31-1.14 2.328-1.14 1.267 0 2.239.63 2.802 1.592.626-.93 1.647-1.591 2.876-1.591 2.057 0 3.338 1.66 3.35 3.713v5.992h-1.807V8.088c0-1.069-.867-1.974-1.936-1.974-1.069 0-1.935.905-1.935 1.974v5.963h-1.807V8.088c0-1.069-.867-1.974-1.936-1.974z" fill-rule="nonzero" fill-opacity="1" fill="#000" stroke="none"></path><path d="M48.36 5.69c-.804-.83-1.905-1.344-3.183-1.344-2.689 0-4.597 2.276-4.597 4.99 0 2.713 1.908 4.99 4.597 4.99 1.278 0 2.379-.514 3.183-1.344v1.069h1.807v-9.43H48.36V5.69zm-5.973 3.646c0-1.8 1.379-3.222 2.987-3.222 1.607 0 2.986 1.422 2.986 3.222 0 1.8-1.379 3.222-2.986 3.222-1.608 0-2.987-1.422-2.987-3.222z" fill-rule="evenodd" fill-opacity="1" fill="#000" stroke="none"></path></svg></span></a></div><div class="header--centerColumn--47wW2 header--column--_eCKx"><a class="header--title--4aIq1 ellipsis--ellipsis--1RWY6" target="_blank" rel="noopener" href="https://www.figma.com/proto/tDHakWrUYatXyxzuHNDpSg">MOL Business Toolkit</a></div><div class="header--rightColumn--18A7d header--sideColumn--11Nzb header--column--_eCKx"><div class="options_menu--optionMenu--2rTOE"><div class="options_menu--optionMenuButton--X1oUU"><span>Options</span><div class="options_menu--buttonChevron--1xQui"><span class="svg-container"><svg class="svg" width="8" height="7" viewBox="0 0 8 7" xmlns="http://www.w3.org/2000/svg"><path d="M3.646 5.354l-3-3 .708-.708L4 4.293l2.646-2.647.708.708-3 3L4 5.707l-.354-.353z" fill-rule="evenodd" fill-opacity="1" fill="#fff" stroke="none"></path></svg></span></div></div></div><a class="header--fullScreenButton--1CTah header--fullScreenButtonBase--cV4ap action--root--1ClVW" data-tooltip-type="text" data-tooltip="Enter full screen (F)"><span class="svg-container"><svg class="svg" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M14.54 4.168l-3.187 3.186-.708-.708 3.197-3.197.753-.449H11V2h5v5h-1V3.334l-.46.834zM3.46 13.832l3.186-3.186.708.708-3.198 3.197-.752.449H7v1H2v-5h1v3.666l.46-.834z" fill-rule="nonzero" fill-opacity="1" fill="#000" stroke="none"></path></svg></span></a></div></div><div class="prototype--content--fG_eb"><div class="sidebar_panel--panelContainerHidden--1T2Q8 sidebar_panel--container--1tsXx" style="width: 240px; margin-left: -240px;"><div class="sidebar_panel--content--1C7Gb left_panel--content--35qKc"><div class="sidebar_panel--verticalFlexContainer--Tpp42 pages_panel--verticalFlexContainer--3d2_R" style="width: 240px;"><div class="sidebar_panel--flowsListPanelContent--1XtLk pages_panel--pagesPanelContent--2qjss"><div class="sidebar_panel--flowsHeaderContainerWithShadow--2TxDt pages_panel--pagesHeaderContainerWithShadow--3_9Ml pages_panel--pagesHeaderContainer--dcdHl"><div class="sidebar_panel--flowsHeaderText--3Zjaq text--fontNeg11--1EuEG text--_fontBase--YWDo0 text--_whiteText--2PkdM pages_panel--pagesHeaderText--1GE3u">Flows</div><div class="close_button--closeX--2ttg_ sidebar_panel--closeButton--3C5VA" role="button" aria-label="Close" data-testid="close-button"><span class=""><svg class="svg" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 5.293L10.646.646l.707.708L6.708 6l4.647 4.646-.708.708L6 6.707l-4.646 4.647-.708-.707L5.293 6 .646 1.354l.708-.707L6 5.293z" fill-rule="evenodd" fill-opacity="1" fill="#fff" stroke="none"></path></svg></span></div></div><div><div class="sidebar_panel--flowsList--1MZSm pages_panel--pagesList--M2vLA"><div class="scroll_container--clipContainer--2PG4d sidebar_panel--scrollContainer--mXcss pages_panel--scrollContainer--2qUat js-fullscreen-wheel-event-capture" style="width: 240px;"><div class="scroll_container--scrollContainer--1eEK2"><div class="scroll_container--innerScrollContainer--21gfN " style="width: 240px;"><div class="sidebar_panel--flowsRowSpacerInsertBeforeTop--3j1bm pages_panel--pageRowSpacerInsertBeforeTop--1kUAt pages_panel--pagesRowSpacer--3XD0S"><div class="raw_components--singleRow--20RH7 raw_components--singleRowHeight--3PF2a raw_components--_row--73H_w sidebar_panel--flowRow--1Khzg pages_panel--pageRow--2vEox"><span class="svg-container sidebar_panel--flowRowSvg--1e7pD
+                        sidebar_panel--hiddenCheckmark---JfSM"><svg class="svg" width="8" height="7" viewBox="0 0 8 7" xmlns="http://www.w3.org/2000/svg"><path d="M1.176 1.882L3.06 3.765 6.824 0 8 1.176 3.059 6.118 0 3.058l1.176-1.176z" fill-rule="evenodd" fill-opacity="1" fill="#000" stroke="none"></path></svg></span><label class="raw_components--label--34YmO raw_components--base--3TpZG sidebar_panel--flowNameUnselected--3nENm text--fontNeg11--1EuEG text--_fontBase--YWDo0 text--_whiteText--2PkdM">Flow 1</label></div></div><div class="sidebar_panel--flowsRowSpacer--2qVKi pages_panel--pagesRowSpacer--3XD0S"><div class="raw_components--singleRow--20RH7 raw_components--singleRowHeight--3PF2a raw_components--_row--73H_w sidebar_panel--flowRow--1Khzg pages_panel--pageRow--2vEox"><span class="svg-container sidebar_panel--flowRowSvg--1e7pD
+                        sidebar_panel--hiddenCheckmark---JfSM"><svg class="svg" width="8" height="7" viewBox="0 0 8 7" xmlns="http://www.w3.org/2000/svg"><path d="M1.176 1.882L3.06 3.765 6.824 0 8 1.176 3.059 6.118 0 3.058l1.176-1.176z" fill-rule="evenodd" fill-opacity="1" fill="#000" stroke="none"></path></svg></span><label class="raw_components--label--34YmO raw_components--base--3TpZG sidebar_panel--flowNameUnselected--3nENm text--fontNeg11--1EuEG text--_fontBase--YWDo0 text--_whiteText--2PkdM">Flow 2</label></div></div><div style="display: none; height: 0px;"></div></div></div></div></div></div></div><div class="sidebar_panel--resizeLineContainer--3XSCR"><div class="sidebar_panel--resizeLine--32wrF"></div></div><div class="sidebar_panel--flowDescriptionPanelContent--3RA18 pages_panel--objectPanelContent--1FJNF "><div class="scroll_container--clipContainer--2PG4d sidebar_panel--scrollContainer--mXcss pages_panel--scrollContainer--2qUat js-fullscreen-wheel-event-capture"><div class="scroll_container--scrollContainer--1eEK2"><div class="scroll_container--innerScrollContainer--21gfN "><div class="sidebar_panel--flowDescriptionInnerPanelContent--3w4bN text--fontNeg11--1EuEG text--_fontBase--YWDo0 text--_whiteText--2PkdM"><div class="quill quill-readonly"><div class="ql-container ql-snow ql-disabled"><div class="ql-editor" data-gramm="false" contenteditable="false"><p>No description</p></div><div class="ql-clipboard" contenteditable="true" tabindex="-1"></div></div></div></div><div style="display: none; height: 0px;"></div></div></div></div></div></div></div><div class="sidebar_panel--edge--1YKbF left_panel--edge--3mQJa" style="left: 240px;"></div></div><div class="prototype--contentMiddle--2lFG_"><div class="prototype--viewerContainer--JOiUY "><div id="viewerContainer" class="prototype--viewer--W7Z-5"><div style="position: absolute; inset: 0px; width: auto; height: auto;"><div style="position: absolute; inset: 0px; width: auto; height: auto;"><canvas width="0" height="0" style="display: block; left: 0px; top: 0px;"></canvas></div></div></div></div><div class="prototype--footerContainer--1oDS_"><div class="footer--footerHidden--1TEFh footer--footer--3rsSh"><div class="footer--debugToolsContainer--28nGF"></div><div class="footer--frameCounterContainer__OLD--rJtYh"><div class="footer--frameCounter__OLD--1jder footer--pill--3AY_G"><span class="svg-container footer--backIconContainerDisabled--3ovjA footer--frameCounterItems--oWRTk"><svg class="svg" width="8" height="13" viewBox="0 0 8 13" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5l-.353-.354-.354.354.354.354L1 6.5zM6.647.146l-6 6 .707.708 6-6-.707-.708zm-6 6.708l6 6 .707-.708-6-6-.707.708z" fill-rule="nonzero" fill-opacity="1" fill="#fff" stroke="none"></path></svg></span><span class="svg-container footer--nextIconContainerDisabled--2Q9Cd footer--frameCounterItems--oWRTk"><svg class="svg" width="8" height="13" viewBox="0 0 8 13" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 6.5l.354-.354.353.354-.353.354L6.5 6.5zM.854.146l6 6-.708.708-6-6L.854.146zm6 6.708l-6 6-.708-.708 6-6 .708.708z" fill-rule="nonzero" fill-opacity="1" fill="#fff" stroke="none"></path></svg></span></div></div><div class="footer--replayButtonContainer--1AzZp"><div class="footer--replayButton__OLD--1iihZ footer--pill--3AY_G"><span class="svg-container"><svg class="svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.293 11.5l3.354-3.354.707.708L8.207 11H14c1.657 0 3 1.343 3 3v1h-1v-1c0-1.105-.895-2-2-2H8.207l2.147 2.146-.707.708L6.293 11.5z" fill-rule="evenodd" fill-opacity="1" fill="#fff" stroke="none"></path></svg></span>Restart (R)</div></div></div></div></div><div class="right_sidebar_panel--sidebarContainerHidden--1ihAh right_sidebar_panel--container--1vk9j"><div><div class="scroll_container--clipContainer--2PG4d right_sidebar_panel--scrollContainer--2sFqK js-fullscreen-wheel-event-capture"><div class="scroll_container--scrollContainer--1eEK2"><div class="scroll_container--innerScrollContainer--21gfN "><div class="right_sidebar_panel--content--2V08P"><div class="comments_sidebar--container--2lBf9 comments_sidebar--darkMode--3VPrB"><div class="comments_sidebar_header--sidebarHeader--25hrT text--fontPos11--RSei3 text--_fontBase--YWDo0" data-onboarding-key="comments-sidebar"><div class="comments_sidebar_search--searchContainer--1PmAP"><span class="svg-container comments_sidebar_search--searchIcon--ExHXQ"><svg class="svg" width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path d="M14.146 14.854l.708-.708-4.272-4.272C11.466 8.83 12 7.477 12 6c0-3.314-2.686-6-6-6-3.314 0-6 2.686-6 6 0 3.314 2.686 6 6 6 1.477 0 2.83-.534 3.874-1.418l4.272 4.272zM11 6c0 2.761-2.239 5-5 5-2.761 0-5-2.239-5-5 0-2.761 2.239-5 5-5 2.761 0 5 2.239 5 5z" fill-rule="nonzero" fill-opacity="1" fill="#000" stroke="none"></path></svg></span><input placeholder="Search" class="comments_sidebar_search--searchInput--2oQ2r text--fontPos11--RSei3 text--_fontBase--YWDo0 ellipsis--ellipsis--1RWY6 lazy_input--lazyInput--2kTZE" spellcheck="false" type="text" value=""></div><div class="comments_sidebar_header--sidebarHeaderButtons--VmxHr"><div><span tabindex="0" class="svg-container raw_components--iconButtonEnabled--1oUUU raw_components--_iconButton--353Le comments_sidebar_header--headerIconButton--33h90" data-tooltip-type="text" data-tooltip="Sort/Filter" aria-label="Sort/Filter"><svg class="svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 15c-3.866 0-7-3.134-7-7 0-3.866 3.134-7 7-7 3.866 0 7 3.134 7 7 0 3.866-3.134 7-7 7zM0 8c0-4.418 3.582-8 8-8 4.418 0 8 3.582 8 8 0 4.418-3.582 8-8 8-4.418 0-8-3.582-8-8zm6 3v-1h4v1H6zM4 5v1h8V5H4zm1 3.5h6v-1H5v1z" fill-rule="evenodd" fill-opacity="1" fill="#000" stroke="none"></path></svg></span></div></div></div><div class="comments_sidebar--emptyStateWrapper--1REYE"><div class="comments_sidebar--emptyStateFeedbackHeader--1u_tH"><span class="comments_sidebar--emptyStateTitle--2kjxE">New and improved comments</span><div class="close_button--closeX--2ttg_ comments_sidebar--closeButton--2GP09" role="button" aria-label="Close" data-testid="close-button"><span class="svg-container"><svg class="svg" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 5.293l4.789-4.79.707.708-4.79 4.79 4.79 4.789-.707.707-4.79-4.79-4.789 4.79-.707-.707L5.293 6 .502 1.211 1.21.504 6 5.294z" fill-rule="nonzero" fill-opacity="1" fill="#000" stroke="none"></path></svg></span></div></div><div class="comments_sidebar--emptyStateInner---5Pfw"><span class="svg-container comments_sidebar--commentTool--3Ph1p"><svg class="svg" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M1.944 16.75l1.696-2.758.287-.465-.237-.493c-.465-.951-.697-1.91-.69-3.034 0-3.866 3.134-7 7-7 3.866 0 7 3.134 7 7 0 3.866-3.134 7-7 7-1.14.007-2.112-.232-3.074-.709l-.268-.131-.296.037-4.418.552zm4.543.44c1.06.518 2.253.81 3.513.81 4.418 0 8-3.582 8-8 0-4.418-3.582-8-8-8-4.418 0-8 3.582-8 8 0 1.243.283 2.419.789 3.468l-2.117 3.44L0 18l1.272-.159 5.215-.652z" fill-rule="nonzero" fill-opacity="1" fill="#000" stroke="none"></path></svg></span><div class="comments_sidebar--emptyStateMessage--2JPt4">Comments are now easier to find, use, and manage. We’d love to know what you think.<a target="_blank" class="comments_sidebar--shareFeedback--U2Uss" href="https://form.asana.com/?k=gtrpbtq7O-cKZ7GKCZ6NlQ&amp;d=10497086658021">Share your feedback</a></div></div></div><div></div></div></div><div style="display: none; height: 0px;"></div></div></div></div></div></div></div></div><a class="embed_documentation_footer--documentationFooter--2gpG4" target="_blank" rel="noopener" href="https://www.figma.com/proto/tDHakWrUYatXyxzuHNDpSg?kind=&amp;node-id=1:353&amp;scaling=scale-down&amp;viewport=788,3042,0.1526501625776291"><div class="embed_documentation_footer--documentationFooterRight--2afUY"></div><div class="embed_documentation_footer--documentationFooterLeft--rcexg"><span class="svg-container embed_documentation_footer--documentationFooterIcon--1K_Je"><svg class="svg" width="12" height="17" viewBox="0 0 12 17" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 1.5h-2c-1.105 0-2 .895-2 2 0 1.105.895 2 2 2h2v-4zm-5 2c0 1.043.533 1.963 1.341 2.5C1.033 6.537.5 7.457.5 8.5c0 1.043.533 1.963 1.341 2.5C1.033 11.537.5 12.457.5 13.5c0 1.657 1.343 3 3 3 1.657 0 3-1.343 3-3V10.736c.53.475 1.232.764 2 .764 1.657 0 3-1.343 3-3 0-1.043-.533-1.963-1.341-2.5.808-.537 1.341-1.457 1.341-2.5 0-1.657-1.343-3-3-3h-5c-1.657 0-3 1.343-3 3zm1 5c0-1.105.895-2 2-2h2v4h-2c-1.105 0-2-.895-2-2zm0 5c0-1.105.895-2 2-2h2v2c0 1.105-.895 2-2 2-1.105 0-2-.895-2-2zm7-3c-1.105 0-2-.895-2-2 0-1.105.895-2 2-2 1.105 0 2 .895 2 2 0 1.105-.895 2-2 2zm0-5h-2v-4h2c1.105 0 2 .895 2 2 0 1.105-.895 2-2 2z" fill-rule="evenodd" fill-opacity="1" fill="#000" stroke="none"></path></svg></span><span class="embed_documentation_footer--documentationFooterTitle--1ApF5 ellipsis--ellipsis--1RWY6 text--fontPos11--RSei3 text--_fontBase--YWDo0">MOL Business Toolkit</span><span class="embed_documentation_footer--documentationFooterUpdatedAt--1c63B text--fontPos11--RSei3 text--_fontBase--YWDo0">Edited 22d ago ago</span></div></a></div><div class="progress_bar--outer--3EVoD"><div class="progress_bar--progressBarCoverViewer--1JLdE progress_bar--progressBarPageCover--5OQvS"></div><div class="progress_bar--centerContainerStatic--3PbSk progress_bar--centerContainer--1Ed_5"><div class="progress_bar--strokedLogo--1KEXE progress_bar--lightStroke--1USbo"><span class="svg-container progress_bar--staticLogo--280mK"><svg class="svg" width="23" height="32" viewBox="0 0 23 32" xmlns="http://www.w3.org/2000/svg"><path d="M0 5.986c0 2.094 1.085 3.937 2.727 5.007C1.085 12.063 0 13.906 0 16c0 2.094 1.085 3.937 2.727 5.007C1.085 22.077 0 23.92 0 26.014 0 29.327 2.738 32 6.067 32c3.358 0 6.121-2.698 6.121-6.04v-5.53c1.073.967 2.498 1.556 4.063 1.556h.11c3.335 0 6.039-2.68 6.039-5.986 0-2.094-1.085-3.937-2.727-5.007C21.315 9.923 22.4 8.08 22.4 5.986 22.4 2.68 19.696 0 16.36 0H6.04C2.703 0 0 2.68 0 5.986zm16.36 5.987h-.109c-2.244 0-4.063 1.803-4.063 4.027 0 2.224 1.82 4.027 4.063 4.027h.11c2.244 0 4.063-1.803 4.063-4.027 0-2.224-1.82-4.027-4.063-4.027zm0-1.96c2.245 0 4.064-1.802 4.064-4.027 0-2.224-1.82-4.027-4.063-4.027h-4.173v8.055h4.173zm-6.148 1.96H6.039c-2.244 0-4.063 1.803-4.063 4.027 0 2.224 1.82 4.027 4.063 4.027h4.173v-8.054zM6.039 21.986h4.173v3.973c0 2.247-1.864 4.082-4.145 4.082-2.251 0-4.09-1.81-4.09-4.027 0-2.225 1.818-4.028 4.062-4.028zm4.173-11.972H6.039c-2.244 0-4.063-1.803-4.063-4.028 0-2.224 1.82-4.027 4.063-4.027h4.173v8.055z" fill-rule="evenodd" fill-opacity="1" fill="#000" stroke="none"></path></svg></span></div><div class="progress_bar--progressbarWrapperViewer--271SU"><div class="progress_bar--progressBarViewerV2--18j3Y "><div class="progress_bar--progressBarShimmer--PV1pV"></div></div></div></div></div><div class="flash_view--flashes--1wuM5"></div><div class="visual_bell--base--3awBi"><div class="visual_bell--messageContainer--1XPoQ _overlayBase--_overlayBase--1sCqN text--fontNeg14--uh3vw text--_fontBase--YWDo0 text--_whiteText--2PkdM "></div></div><div></div><div></div></div></div></div>
+
+    <div id="filebrowser-loading-page" class="hidden fadeOut">
+  <div class="navbar"></div>
+
+  <!-- HAX: this sidebar is cloned and used outside of this page -->
+  <div id="filebrowser-loading-sidebar" class="filebrowser-loading-sidebar">
+    <div class="row">
+      <div class="circle"></div>
+    </div>
+    <div class="row">
+      <div class="circle"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="circle"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="circle"></div>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="circle"></div>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+  </div>
+
+  <div class="page">
+
+
+    <div class="columns">
+
+
+      <div id="loading-content-pane" class="content filebrowser-loading-page">
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <div id="filebrowser-loading-progress-bar"></div>
+</div>
+
+
+    
+
+      <script nonce="">
+    window['sentryConfig'] = {
+    }
+  </script>
+
+      <script nonce="" src="./prototype_app.min.js.br"></script>
+
+  
+
+</body></html>
